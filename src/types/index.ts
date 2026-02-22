@@ -20,6 +20,8 @@ export interface Question {
   choices: string[]
   answer: number
   explanation: string
+  calculationSteps?: string[]
+  relatedFormula?: string
   image: string | null
 }
 

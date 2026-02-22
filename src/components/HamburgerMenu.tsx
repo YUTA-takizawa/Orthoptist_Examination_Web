@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, BookOpen, CreditCard, AlertTriangle, Calendar, Trophy } from 'lucide-react'
+import { Menu, X, BookOpen, CreditCard, AlertTriangle, Calendar, Trophy, Calculator } from 'lucide-react'
 import type { GameData } from '@/types'
 
 interface HamburgerMenuProps {
@@ -96,6 +96,13 @@ export function HamburgerMenu({ gameData, onNavigate }: HamburgerMenuProps) {
                 >
                   <CreditCard className="w-5 h-5 text-accent-dark" />
                   <span className="text-sm font-medium">フラッシュカード</span>
+                </button>
+                <button
+                  onClick={() => handleNav('formula')}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-bg transition-colors text-left"
+                >
+                  <Calculator className="w-5 h-5 text-emerald-500" />
+                  <span className="text-sm font-medium">公式集</span>
                 </button>
                 <button
                   onClick={() => handleNav('weak')}

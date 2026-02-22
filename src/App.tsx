@@ -20,10 +20,11 @@ import { FlashCardView } from '@/components/FlashCardView'
 import { PastExamView } from '@/components/PastExamView'
 import { WeakQuestionsView } from '@/components/WeakQuestionsView'
 import { BadgeView } from '@/components/BadgeView'
+import { FormulaView } from '@/components/FormulaView'
 import { ShareButton } from '@/components/ShareButton'
 import { IOSGuideModal } from '@/components/IOSGuideModal'
 
-type Page = 'study' | 'completed' | 'pastExam' | 'flashcard' | 'weak' | 'badges' | 'examDate'
+type Page = 'study' | 'completed' | 'pastExam' | 'flashcard' | 'weak' | 'badges' | 'examDate' | 'formula'
 
 function StudyApp() {
   const { questions, loading, error } = useQuestions()
@@ -256,6 +257,8 @@ function StudyApp() {
       )}
 
       {page === 'badges' && <BadgeView onBack={() => handleNavigate('study')} />}
+
+      {page === 'formula' && <FormulaView onBack={() => handleNavigate('study')} />}
 
       {page === 'examDate' && (
         <div className="min-h-screen flex items-center justify-center">

@@ -22,10 +22,11 @@ export function QuestionCard({ question, onAnswer, questionNumber, totalQuestion
     setSelected(index)
     setShowExplanation(true)
 
-    // Auto-advance after delay
+    // Longer delay when calculation steps are present
+    const delay = question.calculationSteps ? 5000 : 2000
     setTimeout(() => {
       onAnswer(index === question.answer)
-    }, 2000)
+    }, delay)
   }
 
   return (
@@ -119,10 +120,31 @@ export function QuestionCard({ question, onAnswer, questionNumber, totalQuestion
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="bg-blue-50 border border-blue-100 rounded-xl p-4"
+                className="space-y-3"
               >
-                <p className="text-sm text-blue-900 font-medium mb-1">解説</p>
-                <p className="text-sm text-blue-800 leading-relaxed">{question.explanation}</p>
+                <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
+                  <p className="text-sm text-blue-900 font-medium mb-1">解説</p>
+                  <p className="text-sm text-blue-800 leading-relaxed">{question.explanation}</p>
+                </div>
+
+                {/* Calculation steps */}
+                {question.calculationSteps && question.calculationSteps.length > 0 && (
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+                    <p className="text-sm text-emerald-900 font-bold mb-2">計算ステップ</p>
+                    <div className="space-y-1">
+                      {question.calculationSteps.map((step, i) => (
+                        <p key={i} className="text-xs text-emerald-800 leading-relaxed font-mono whitespace-pre-wrap">
+                          {step}
+                        </p>
+                      ))}
+                    </div>
+                    {question.relatedFormula && (
+                      <p className="text-[10px] text-emerald-600 mt-2 pt-2 border-t border-emerald-200">
+                        関連公式: {question.relatedFormula}
+                      </p>
+                    )}
+                  </div>
+                )}
               </motion.div>
             )}
           </motion.div>
